@@ -12,14 +12,14 @@ class ProductDetailScreen extends StatelessWidget {
   final String image;
   final String description;
 
-  const ProductDetailScreen({
-    Key? key,
-    required this.title,
-    required this.subtitle,
-    required this.price,
-    required this.image,
-    required this.description
-  }) : super(key: key);
+  const ProductDetailScreen(
+      {Key? key,
+      required this.title,
+      required this.subtitle,
+      required this.price,
+      required this.image,
+      required this.description})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +28,14 @@ class ProductDetailScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.ios_share, color: Colors.black),
+            icon: const Icon(Icons.ios_share, color: Colors.black),
             onPressed: () {},
           ),
         ],
@@ -55,7 +55,6 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -73,10 +72,9 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   Text(
                     subtitle,
-                    style: TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 10),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -87,38 +85,42 @@ class ProductDetailScreen extends StatelessWidget {
                             icon: const Icon(Icons.remove),
                           ),
                           Container(
-                            width: 20,
-                            height: 20,
+                            width: 30,
+                            height: 30,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(32),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 1,
+                              ),
                             ),
-                            child: Text('1', style: TextStyle(fontSize: 16)),
+                            child: const Center(
+                                child:
+                                    Text('1', style: TextStyle(fontSize: 16))),
                           ),
                           IconButton(
                             onPressed: () {
-                              // Implement increase quantity
+                             
                             },
-                            icon: Icon(Icons.add),
+                            icon: const Icon(Icons.add),
                           ),
                         ],
                       ),
-                      // Price
                       Text(
-                        price, // Use the passed price
-                        style: TextStyle(
+                        price,
+                        style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            color: Colors.green),
+                            color: Colors.black),
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  // Product Detail Section
-                  ExpansionTile(
+                  const SizedBox(height: 20),
+                  const ExpansionTile(
                     title: Text('Product Detail'),
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Text(
                           'Apples are nutritious. Apples may be good for weight loss. Apples may be good for your heart as part of a healthful and varied diet.',
                           style: TextStyle(color: Colors.grey),
@@ -126,11 +128,11 @@ class ProductDetailScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  ExpansionTile(
+                  const ExpansionTile(
                     title: Text('Nutritions'),
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Text(
                           'Nutrition details for this product will be displayed here.',
                           style: TextStyle(color: Colors.grey),
@@ -138,11 +140,11 @@ class ProductDetailScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  ExpansionTile(
+                  const ExpansionTile(
                     title: Text('Review'),
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Row(
                           children: [
                             Text('5.0'),
@@ -157,7 +159,7 @@ class ProductDetailScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 80),
+                  const SizedBox(height: 80),
                 ],
               ),
             ),

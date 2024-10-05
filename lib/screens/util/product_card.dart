@@ -22,7 +22,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to product detail page
+        
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -79,7 +79,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Handle adding to cart
+                      
                     },
                     child: Container(
                       height: 27,

@@ -5,13 +5,15 @@ import '../repository/getshop_data_provider.dart';
 import 'util/product_card.dart';
 
 class ShopScreen extends StatefulWidget {
+  const ShopScreen({super.key});
+
   @override
   _ShopScreenState createState() => _ShopScreenState();
 }
 
 class _ShopScreenState extends State<ShopScreen> {
   String _searchQuery = ''; 
-  TextEditingController _searchController = TextEditingController(); 
+  final TextEditingController _searchController = TextEditingController(); 
 
   @override
   Widget build(BuildContext context) {
@@ -58,17 +60,17 @@ class _ShopScreenState extends State<ShopScreen> {
                       controller: _searchController,
                       decoration: InputDecoration(
                         hintText: 'Search Store',
-                       // prefixIcon: Icon(Icons.search),
+                   
                         border: InputBorder.none,
-                        // suffixIcon: IconButton(
-                        //   icon: Icon(Icons.clear),
-                        //   onPressed: () {
-                        //     _searchController.clear();
-                        //     setState(() {
-                        //       _searchQuery = '';
-                        //     });
-                        //   },
-                        // ),
+                        suffixIcon: IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() {
+                              _searchQuery = '';
+                            });
+                          },
+                        ),
                       ),
                       onChanged: (query) {
                         setState(() {
@@ -78,7 +80,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 
                 Expanded(
                   child: GridView.builder(
@@ -96,7 +98,7 @@ class _ShopScreenState extends State<ShopScreen> {
                         subtitle: item.id.toString(),
                         price: '\$${item.price}',
                         image: item.image, 
-                        description: item!.description,
+                        description: item.description,
 
                       );
                     },

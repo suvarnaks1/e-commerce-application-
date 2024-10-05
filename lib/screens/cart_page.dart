@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:futurelabinterviewapp/screens/home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../repository/cart_provider.dart';
@@ -17,7 +18,7 @@ class CartScreen extends StatelessWidget {
                 final item = cart.items[index];
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: SizedBox(
                     height: 150,
                     width: 34,
                     child: Row(
@@ -27,58 +28,90 @@ class CartScreen extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: Image.network(item.image,
                                 height: 90, width: 90)),
-                        Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   item.name,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 16),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
                                 ),
                                 IconButton(
                                     onPressed: () {
-                  
                                       Provider.of<Cart>(context, listen: false)
-                      .removeItem(index);
-                  
+                                          .removeItem(index);
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.close,
                                       size: 20,
                                     ))
                               ],
                             ),
-                            Text(item.description),
+                            Text(
+                              'Quantity: ${item.quantity}',
+                              style: const TextStyle(fontSize: 14),
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 120,
                                   height: 70,
                                   child: Row(
                                     children: [
-                                      IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.add_circle_outline,
-                                            size: 30,
-                                          )),
-                                      Text('1'),
-                                      IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.remove_circle_outline,
-                                            size: 30,
-                                          ))
+                                
+                                      Container(
+                                        height: 30,
+                                        width: 30,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                            color: Colors.black, 
+                                            width: 1,
+                                          ),
+                                        ),
+                                        child: const Icon(
+                                          Icons.remove,
+                                          size: 20,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      const Text('1'),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Container(
+                                        height: 30,
+                                        width: 30,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                            color: Colors.black,
+                                            width: 1,
+                                          ),
+                                        ),
+                                        child: const Icon(
+                                          Icons.add,
+                                          size: 20,
+                                          color: Colors.green,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
                                 Text(
                                   item.price,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 16),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
                                 )
                               ],
                             )
@@ -92,7 +125,13 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+            },
             child: Container(
               height: 50,
               width: 300,
@@ -103,17 +142,17 @@ class CartScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 90,
                   ),
-                  Text(
+                  const Text(
                     'Go To Checkout',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Container(

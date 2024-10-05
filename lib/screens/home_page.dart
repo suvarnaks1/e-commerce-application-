@@ -38,16 +38,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.search, color: Colors.black),
-          onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => ProductDetailScreen()),
-            // );
-            // await _shopListData.getShopItemList();
-          },
+          icon: const Icon(Icons.search, color: Colors.black),
+          onPressed: () {},
         ),
-        title: Column(
+        title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -60,7 +54,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-    
       body: IndexedStack(
         index: _selectedIndex,
         children: _pages,
@@ -69,8 +62,8 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.black,
-        onTap: _onItemTapped, 
-        items: [
+        onTap: _onItemTapped,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.store),
             label: 'Shop',

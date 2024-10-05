@@ -5,7 +5,7 @@ import 'package:futurelabinterviewapp/screens/home_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
                 ChangeNotifierProvider<Cart>(
             create: (context) => Cart())
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: HomePage(),
       ),
