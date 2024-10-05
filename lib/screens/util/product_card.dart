@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../product_detail_page.dart';
@@ -8,19 +7,21 @@ class ProductCard extends StatelessWidget {
   final String subtitle;
   final String price;
   final String image;
+  final String description;
 
-  const ProductCard({
-    Key? key,
-    required this.title,
-    required this.subtitle,
-    required this.price,
-    required this.image,
-  }) : super(key: key);
+  const ProductCard(
+      {Key? key,
+      required this.title,
+      required this.subtitle,
+      required this.price,
+      required this.image,
+      required this.description})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-       onTap: () {
+      onTap: () {
         // Navigate to product detail page
         Navigator.push(
           context,
@@ -30,12 +31,13 @@ class ProductCard extends StatelessWidget {
               subtitle: subtitle,
               price: price,
               image: image,
+              description: description,
             ),
           ),
         );
       },
       child: Container(
-       height: 100,
+        height: 100,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -52,17 +54,16 @@ class ProductCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.network(image, height: 50), // Display image from network
+              Image.network(image, height: 50),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(width: 50,
-                  height: 50,
-                    child: Text(subtitle)),
+                  SizedBox(width: 50, height: 50, child: Text(subtitle)),
                 ],
               ),
               Row(
@@ -95,14 +96,10 @@ class ProductCard extends StatelessWidget {
                   )
                 ],
               ),
-             // SizedBox(height: 60,)
             ],
           ),
         ),
       ),
     );
-  }}
-
-
-
-
+  }
+}

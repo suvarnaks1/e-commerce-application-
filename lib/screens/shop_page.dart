@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../repository/getshop_data_provider.dart';
-import 'util/product_page.dart';
+import 'util/product_card.dart';
 
 class ShopScreen extends StatefulWidget {
   @override
@@ -10,8 +10,8 @@ class ShopScreen extends StatefulWidget {
 }
 
 class _ShopScreenState extends State<ShopScreen> {
-  String _searchQuery = ''; // To store search query
-  TextEditingController _searchController = TextEditingController(); // Controller for the search bar
+  String _searchQuery = ''; 
+  TextEditingController _searchController = TextEditingController(); 
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _ShopScreenState extends State<ShopScreen> {
         } else {
           final shopItems = snapshot.data;
 
-          // Filter products based on the search query
+         
           final filteredItems = shopItems!.where((item) {
             final titleLower = item.title.toLowerCase();
             final searchLower = _searchQuery.toLowerCase();
@@ -40,7 +40,7 @@ class _ShopScreenState extends State<ShopScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                // Search Bar
+               
                 Container(
                   height: 50,
                   decoration: BoxDecoration(
@@ -72,14 +72,14 @@ class _ShopScreenState extends State<ShopScreen> {
                       ),
                       onChanged: (query) {
                         setState(() {
-                          _searchQuery = query; // Update search query on text change
+                          _searchQuery = query; 
                         });
                       },
                     ),
                   ),
                 ),
                 SizedBox(height: 20),
-                // Grid View for Products
+                
                 Expanded(
                   child: GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -96,6 +96,8 @@ class _ShopScreenState extends State<ShopScreen> {
                         subtitle: item.id.toString(),
                         price: '\$${item.price}',
                         image: item.image, 
+                        description: item!.description,
+
                       );
                     },
                   ),

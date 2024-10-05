@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:futurelabinterviewapp/screens/cart_page.dart';
+import 'package:provider/provider.dart';
+
+import '../repository/cart_provider.dart';
+import 'util/green_container.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final String title;
   final String subtitle;
   final String price;
   final String image;
+  final String description;
 
   const ProductDetailScreen({
     Key? key,
@@ -12,6 +18,7 @@ class ProductDetailScreen extends StatelessWidget {
     required this.subtitle,
     required this.price,
     required this.image,
+    required this.description
   }) : super(key: key);
 
   @override
@@ -28,8 +35,8 @@ class ProductDetailScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.favorite_border, color: Colors.black),
-            onPressed: () {}, // Add functionality if needed
+            icon: Icon(Icons.ios_share, color: Colors.black),
+            onPressed: () {},
           ),
         ],
       ),
@@ -41,43 +48,57 @@ class ProductDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Product Image
                   Center(
                     child: Image.network(
-                      image, // Use the passed image URL
+                      image,
                       height: 200,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  // Product Info
-                  Text(
-                    title, // Use the passed title
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    subtitle, // Use the passed subtitle
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  SizedBox(height: 10),
-                  // Price
+                  const SizedBox(height: 20),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Quantity Selector
+                      Text(
+                        title,
+                        style: const TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.favorite_border,
+                            color: Colors.black),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                  Text(
+                    subtitle,
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  const SizedBox(height: 10),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       Row(
                         children: [
                           IconButton(
-                            onPressed: () {
-                              // Implement decrease quantity
-                            },
-                            icon: Icon(Icons.remove_circle_outline),
+                            onPressed: () {},
+                            icon: const Icon(Icons.remove),
                           ),
-                          Text('1', style: TextStyle(fontSize: 16)), // Update based on actual quantity
+                          Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(32),
+                            ),
+                            child: Text('1', style: TextStyle(fontSize: 16)),
+                          ),
                           IconButton(
                             onPressed: () {
                               // Implement increase quantity
                             },
-                            icon: Icon(Icons.add_circle_outline),
+                            icon: Icon(Icons.add),
                           ),
                         ],
                       ),
@@ -126,42 +147,34 @@ class ProductDetailScreen extends StatelessWidget {
                           children: [
                             Text('5.0'),
                             SizedBox(width: 10),
-                            Icon(Icons.star, color: Colors.yellow, size: 20),
-                            Icon(Icons.star, color: Colors.yellow, size: 20),
-                            Icon(Icons.star, color: Colors.yellow, size: 20),
-                            Icon(Icons.star, color: Colors.yellow, size: 20),
-                            Icon(Icons.star, color: Colors.yellow, size: 20),
+                            Icon(Icons.star, color: Colors.orange, size: 20),
+                            Icon(Icons.star, color: Colors.orange, size: 20),
+                            Icon(Icons.star, color: Colors.orange, size: 20),
+                            Icon(Icons.star, color: Colors.orange, size: 20),
+                            Icon(Icons.star, color: Colors.orange, size: 20),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 80), // Adjusted space for the container
+                  SizedBox(height: 80),
                 ],
               ),
             ),
           ),
-          // Add to Basket Container
           Positioned(
-            bottom: 16, // Space from bottom
-            left: 16, // Space from left
-            right: 16, // Space from right
-            child: GestureDetector(
+            bottom: 16,
+            left: 16,
+            right: 16,
+            child: GreenContainer(
               onTap: () {
-                // Add functionality to add product to the basket
+                Provider.of<Cart>(context, listen: false)
+                    .addItem(title, subtitle, price, image, description);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('$title added to the cart')),
+                );
               },
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.green, // Background color
-                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  'Add To Basket',
-                  style: TextStyle(fontSize: 18, color: Colors.white), // Text style
-                ),
-              ),
+              text: 'Add To Basket',
             ),
           ),
         ],

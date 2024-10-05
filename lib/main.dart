@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:futurelabinterviewapp/repository/cart_provider.dart';
 import 'package:futurelabinterviewapp/repository/getshop_data_provider.dart';
 import 'package:futurelabinterviewapp/screens/home_page.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ShopListNotifier>(
-            create: (context) => ShopListNotifier())
+            create: (context) => ShopListNotifier()),
+
+                ChangeNotifierProvider<Cart>(
+            create: (context) => Cart())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
