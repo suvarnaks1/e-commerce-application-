@@ -99,6 +99,7 @@ class _ShopScreenState extends State<ShopScreen> {
                         price: '\$${item.price}',
                         image: item.image, 
                         description: item.description,
+                        rating:item.rating.toString()
 
                       );
                     },

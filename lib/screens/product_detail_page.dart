@@ -18,7 +18,7 @@ class ProductDetailScreen extends StatelessWidget {
       required this.subtitle,
       required this.price,
       required this.image,
-      required this.description})
+      required this.description, required String rating})
       : super(key: key);
 
   @override

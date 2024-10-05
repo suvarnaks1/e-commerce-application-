@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:futurelabinterviewapp/model/shop_items_model.dart';
 
 import '../product_detail_page.dart';
 
@@ -8,6 +9,7 @@ class ProductCard extends StatelessWidget {
   final String price;
   final String image;
   final String description;
+  final String rating;
 
   const ProductCard(
       {Key? key,
@@ -15,14 +17,14 @@ class ProductCard extends StatelessWidget {
       required this.subtitle,
       required this.price,
       required this.image,
-      required this.description})
+      required this.description,
+      required this.rating})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -32,6 +34,7 @@ class ProductCard extends StatelessWidget {
               price: price,
               image: image,
               description: description,
+              rating: rating,
             ),
           ),
         );
@@ -49,55 +52,50 @@ class ProductCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.network(image, height: 50),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.network(image, height: 50),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(width: 50, height: 50, child: Text('iD :${subtitle}')),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  price,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
-                  SizedBox(width: 50, height: 50, child: Text(subtitle)),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    price,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: 27,
+                    width: 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.green,
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      size: 20,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      
-                    },
-                    child: Container(
-                      height: 27,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.green,
-                      ),
-                      child: const Icon(
-                        Icons.add,
-                        size: 20,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );

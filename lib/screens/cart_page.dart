@@ -63,7 +63,6 @@ class CartScreen extends StatelessWidget {
                                   height: 70,
                                   child: Row(
                                     children: [
-                                
                                       Container(
                                         height: 30,
                                         width: 30,
@@ -71,7 +70,7 @@ class CartScreen extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           border: Border.all(
-                                            color: Colors.black, 
+                                            color: Colors.black,
                                             width: 1,
                                           ),
                                         ),
@@ -126,11 +125,10 @@ class CartScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-
               Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
             },
             child: Container(
               height: 50,
